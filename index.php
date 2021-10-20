@@ -416,27 +416,26 @@
     function task14_1Run() {
         // Функция возвращающая разность массива A и массива B
         function Complement($arr) {
-            $arrTemp = array();
+            // $arrTemp = array();
             $b = [12, 5, 17, 6, 4];
-            $cnt = 0;
+            $trigger = true;
 
             // Проверка если, элемент с массива А отсутсвует в массиве B, то добавить в третий массив
             for ($i=0; $i < count($arr); $i++) {
-                // Проверяю первый элемент массива А встречается ли в массиве B
+                // Проверяю элемент массива А встречается ли в массиве B
                 for ($j=0; $j < count($b); $j++) {
                     // Если встречается, то переходим сразу к следующему 
                     if ($arr[$i] == $b[$j]) {
+                        $trigger = false;
                         break;
                     }
-                    $cnt++; 
                 }
-                if ($cnt == count($b)) {
-                    array_push($arrTemp, $arr[$i]);
+                if ($trigger == true) {
+                    print_r($arr[$i] . " ");
                 }
-                $cnt = 0;
+                $trigger = true;
             }
-
-            return $arrTemp;
+            // return $arrTemp;
         }
 
         // Массив
@@ -454,13 +453,8 @@
             array_push($a, rand($min, $max));
         }
 
-        // Вызвать функцию
-        $arrComp = Complement($a);
-
         // Вывести элементы
-        foreach ($arrComp as $value) {
-            print_r($value . " ");
-        }
+        Complement($a);
     }
 
 
